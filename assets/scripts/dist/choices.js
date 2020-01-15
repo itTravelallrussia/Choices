@@ -1,4 +1,4 @@
-/*! choices.js v3.0.2 | (c) 2018 Josh Johnson | https://github.com/jshjohnson/Choices#readme */ 
+/*! choices.js v3.0.3 | (c) 2020 Josh Johnson | https://github.com/jshjohnson/Choices#readme */ 
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory();
@@ -1748,7 +1748,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var backKey = 46;
 	      var deleteKey = 8;
 	      var enterKey = 13;
-	      var tabKey = 9;
 	      var aKey = 65;
 	      var escapeKey = 27;
 	      var upKey = 38;
@@ -1877,51 +1876,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	      };
 
-	      var onTabKey = function onTabKey() {
-	        // If enter key is pressed and the input has a value
-	        if (_this16.isTextElement && target.value) {
-	          var value = _this16.input.value;
-	          var canAddItem = _this16._canAddItem(activeItems, value);
-
-	          // All is good, add
-	          if (canAddItem.response) {
-	            if (hasActiveDropdown) {
-	              _this16.hideDropdown();
-	            }
-	            _this16._addItem(value);
-	            _this16._triggerChange(value);
-	            _this16.clearInput();
-	          }
-	        }
-
-	        if (target.hasAttribute('data-button')) {
-	          _this16._handleButtonAction(activeItems, target);
-	          e.preventDefault();
-	        }
-
-	        if (hasActiveDropdown) {
-	          e.preventDefault();
-	          var highlighted = _this16.dropdown.querySelector('.' + _this16.config.classNames.highlightedState);
-
-	          // If we have a highlighted choice
-	          if (highlighted) {
-	            // add enter keyCode value
-	            if (activeItems[0]) {
-	              activeItems[0].keyCode = tabKey;
-	            }
-	            _this16._handleChoiceAction(activeItems, highlighted);
-	          }
-	        } else if (_this16.isSelectOneElement) {
-	          // Open single select dropdown if it's not active
-	          if (!hasActiveDropdown) {
-	            _this16.showDropdown(true);
-	            e.preventDefault();
-	          }
-	        }
-	      };
-
 	      // Map keys to key actions
-	      var keyDownActions = (_keyDownActions = {}, _defineProperty(_keyDownActions, aKey, onAKey), _defineProperty(_keyDownActions, enterKey, onEnterKey), _defineProperty(_keyDownActions, tabKey, onTabKey), _defineProperty(_keyDownActions, escapeKey, onEscapeKey), _defineProperty(_keyDownActions, upKey, onDirectionKey), _defineProperty(_keyDownActions, pageUpKey, onDirectionKey), _defineProperty(_keyDownActions, downKey, onDirectionKey), _defineProperty(_keyDownActions, pageDownKey, onDirectionKey), _defineProperty(_keyDownActions, deleteKey, onDeleteKey), _defineProperty(_keyDownActions, backKey, onDeleteKey), _keyDownActions);
+	      var keyDownActions = (_keyDownActions = {}, _defineProperty(_keyDownActions, aKey, onAKey), _defineProperty(_keyDownActions, enterKey, onEnterKey), _defineProperty(_keyDownActions, escapeKey, onEscapeKey), _defineProperty(_keyDownActions, upKey, onDirectionKey), _defineProperty(_keyDownActions, pageUpKey, onDirectionKey), _defineProperty(_keyDownActions, downKey, onDirectionKey), _defineProperty(_keyDownActions, pageDownKey, onDirectionKey), _defineProperty(_keyDownActions, deleteKey, onDeleteKey), _defineProperty(_keyDownActions, backKey, onDeleteKey), _keyDownActions);
 
 	      // If keycode has a function, run it
 	      if (keyDownActions[e.keyCode]) {
