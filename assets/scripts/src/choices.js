@@ -2463,7 +2463,7 @@ class Choices {
             }
             data-type="${this.passedElement.type}"
             ${this.isSelectOneElement ?
-              'tabindex="0"' :
+              'tabindex="-1"' :
               ''
             }
             aria-haspopup="true"
