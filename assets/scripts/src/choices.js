@@ -1759,7 +1759,6 @@ class Choices {
 
       if (target.hasAttribute('data-button')) {
         this._handleButtonAction(activeItems, target);
-        e.preventDefault();
       }
 
       if (hasActiveDropdown) {
@@ -1773,9 +1772,9 @@ class Choices {
           }
           if (hasActiveDropdown.innerText !==  this.idNames.itemChoice) {
             this._handleChoiceAction(activeItems, highlighted);
-            e.preventDefault();
           }
           else {
+            e.dispatchEvent(new Event('blur'));
             this.hideDropdown();
           }
         }
@@ -1783,7 +1782,6 @@ class Choices {
         // Open single select dropdown if it's not active
         if (!hasActiveDropdown) {
           this.showDropdown(true);
-          e.preventDefault();
         }
       }
     };

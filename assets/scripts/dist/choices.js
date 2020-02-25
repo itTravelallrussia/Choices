@@ -1896,7 +1896,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        if (target.hasAttribute('data-button')) {
 	          _this16._handleButtonAction(activeItems, target);
-	          e.preventDefault();
 	        }
 
 	        if (hasActiveDropdown) {
@@ -1910,8 +1909,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	            if (hasActiveDropdown.innerText !== _this16.idNames.itemChoice) {
 	              _this16._handleChoiceAction(activeItems, highlighted);
-	              e.preventDefault();
 	            } else {
+	              e.dispatchEvent(new Event('blur'));
 	              _this16.hideDropdown();
 	            }
 	          }
@@ -1919,7 +1918,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	          // Open single select dropdown if it's not active
 	          if (!hasActiveDropdown) {
 	            _this16.showDropdown(true);
-	            e.preventDefault();
 	          }
 	        }
 	      };
