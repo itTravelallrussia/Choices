@@ -1568,7 +1568,7 @@ class Choices {
 
     this.input.removeEventListener('input', this._onInput);
     this.input.removeEventListener('paste', this._onPaste);
-      this.input.removeEventListener('focus', this._onFocus);
+    this.input.removeEventListener('focus', this._onFocus);
     this.input.removeEventListener('blur', this._onBlur);
   }
 
@@ -1778,6 +1778,7 @@ class Choices {
         if (!hasActiveDropdown) {
           this.showDropdown(true);
         }
+        this.hideDropdown();
       }
     };
 
