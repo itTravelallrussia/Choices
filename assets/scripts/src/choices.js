@@ -1770,7 +1770,7 @@ class Choices {
           if (activeItems[0]) {
             activeItems[0].keyCode = tabKey;
           }
-          if (hasActiveDropdown.innerText !==  this.idNames.itemChoice) {
+          if (highlighted.innerText !==  this.currentValue) {
             this._handleChoiceAction(activeItems, highlighted);
           }
           else {

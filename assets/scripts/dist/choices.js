@@ -1907,7 +1907,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            if (activeItems[0]) {
 	              activeItems[0].keyCode = tabKey;
 	            }
-	            if (hasActiveDropdown.innerText !== _this16.idNames.itemChoice) {
+	            if (highlighted.innerText !== _this16.currentValue) {
 	              _this16._handleChoiceAction(activeItems, highlighted);
 	            } else {
 	              _this16.hideDropdown();
