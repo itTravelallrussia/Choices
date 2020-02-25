@@ -1610,6 +1610,7 @@ class Choices {
     const backKey = 46;
     const deleteKey = 8;
     const enterKey = 13;
+    const tabKey = 9;
     const aKey = 65;
     const escapeKey = 27;
     const upKey = 38;
@@ -1739,10 +1740,53 @@ class Choices {
       }
     };
 
+    const onTabKey = () => {
+      // If enter key is pressed and the input has a value
+      debugger;
+      if (this.isTextElement && target.value) {
+        const value = this.input.value;
+        const canAddItem = this._canAddItem(activeItems, value);
+
+        // All is good, add
+        if (canAddItem.response) {
+          if (hasActiveDropdown) {
+            this.hideDropdown();
+          }
+          this._addItem(value);
+          this._triggerChange(value);
+          this.clearInput();
+        }
+      }
+
+      if (target.hasAttribute('data-button')) {
+        this._handleButtonAction(activeItems, target);
+      }
+
+      if (hasActiveDropdown) {
+        const highlighted = this.dropdown.querySelector(`.${this.config.classNames.highlightedState}`);
+
+        // If we have a highlighted choice
+        if (highlighted) {
+          // add enter keyCode value
+          if (activeItems[0]) {
+            activeItems[0].keyCode = tabKey;
+          }
+          this._handleChoiceAction(activeItems, highlighted);
+        }
+
+      } else if (this.isSelectOneElement) {
+        // Open single select dropdown if it's not active
+        if (!hasActiveDropdown) {
+          this.showDropdown(true);
+        }
+      }
+    };
+
     // Map keys to key actions
     const keyDownActions = {
       [aKey]: onAKey,
       [enterKey]: onEnterKey,
+      [tabKey]: onTabKey,
       [escapeKey]: onEscapeKey,
       [upKey]: onDirectionKey,
       [pageUpKey]: onDirectionKey,
