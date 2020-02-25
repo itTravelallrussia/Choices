@@ -1775,6 +1775,7 @@ class Choices {
           }
           else {
             this.hideDropdown();
+            this.containerOuter.focus();
           }
         }
       } else if (this.isSelectOneElement) {

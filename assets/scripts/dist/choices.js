@@ -1911,6 +1911,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	              _this16._handleChoiceAction(activeItems, highlighted);
 	            } else {
 	              _this16.hideDropdown();
+	              _this16.containerOuter.focus();
 	            }
 	          }
 	        } else if (_this16.isSelectOneElement) {
