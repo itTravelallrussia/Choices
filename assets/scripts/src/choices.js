@@ -1761,25 +1761,26 @@ class Choices {
         this._handleButtonAction(activeItems, target);
       }
 
-      if (hasActiveDropdown && target.value !== '') {
-        const highlighted = this.dropdown.querySelector(`.${this.config.classNames.highlightedState}`);
+      if (target.value !== '') {
+        if (hasActiveDropdown) {
+          const highlighted = this.dropdown.querySelector(`.${this.config.classNames.highlightedState}`);
 
-        // If we have a highlighted choice
-        if (highlighted) {
-          // add enter keyCode value
-          if (activeItems[0]) {
-            activeItems[0].keyCode = tabKey;
+          // If we have a highlighted choice
+          if (highlighted) {
+            // add enter keyCode value
+            if (activeItems[0]) {
+              activeItems[0].keyCode = tabKey;
+            }
+            this._handleChoiceAction(activeItems, highlighted);
           }
-          this._handleChoiceAction(activeItems, highlighted);
+        } else if (this.isSelectOneElement) {
+          // Open single select dropdown if it's not active
+          if (!hasActiveDropdown) {
+            this.showDropdown(true);
+          }
         }
-
-      } else if (this.isSelectOneElement) {
-        // Open single select dropdown if it's not active
-        if (!hasActiveDropdown) {
-          this.showDropdown(true);
-        }
-        this.hideDropdown();
       }
+
     };
 
     // Map keys to key actions
