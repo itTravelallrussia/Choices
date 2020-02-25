@@ -1774,7 +1774,6 @@ class Choices {
             this._handleChoiceAction(activeItems, highlighted);
           }
           else {
-            e.dispatchEvent(new Event('blur'));
             this.hideDropdown();
           }
         }

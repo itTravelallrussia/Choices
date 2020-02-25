@@ -1910,7 +1910,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	            if (hasActiveDropdown.innerText !== _this16.idNames.itemChoice) {
 	              _this16._handleChoiceAction(activeItems, highlighted);
 	            } else {
-	              e.dispatchEvent(new Event('blur'));
 	              _this16.hideDropdown();
 	            }
 	          }
