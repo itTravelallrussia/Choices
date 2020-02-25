@@ -1879,7 +1879,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      var onTabKey = function onTabKey() {
 	        // If enter key is pressed and the input has a value
-	        debugger;
 	        if (_this16.isTextElement && target.value) {
 	          var value = _this16.input.value;
 	          var canAddItem = _this16._canAddItem(activeItems, value);
@@ -1899,7 +1898,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          _this16._handleButtonAction(activeItems, target);
 	        }
 
-	        if (hasActiveDropdown) {
+	        if (hasActiveDropdown && target.value !== '') {
 	          var highlighted = _this16.dropdown.querySelector('.' + _this16.config.classNames.highlightedState);
 
 	          // If we have a highlighted choice

@@ -1742,7 +1742,6 @@ class Choices {
 
     const onTabKey = () => {
       // If enter key is pressed and the input has a value
-      debugger;
       if (this.isTextElement && target.value) {
         const value = this.input.value;
         const canAddItem = this._canAddItem(activeItems, value);
@@ -1762,7 +1761,7 @@ class Choices {
         this._handleButtonAction(activeItems, target);
       }
 
-      if (hasActiveDropdown) {
+      if (hasActiveDropdown && target.value !== '') {
         const highlighted = this.dropdown.querySelector(`.${this.config.classNames.highlightedState}`);
 
         // If we have a highlighted choice
