@@ -1780,6 +1780,9 @@ class Choices {
           }
         }
       }
+      else{
+        this.hideDropdown();
+      }
 
     };
 

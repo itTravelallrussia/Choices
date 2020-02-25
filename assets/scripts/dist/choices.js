@@ -1916,6 +1916,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	              _this16.showDropdown(true);
 	            }
 	          }
+	        } else {
+	          _this16.hideDropdown();
 	        }
 	      };
 
