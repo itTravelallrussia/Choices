@@ -1772,6 +1772,7 @@ class Choices {
               activeItems[0].keyCode = tabKey;
             }
             this._handleChoiceAction(activeItems, highlighted);
+            this.hideDropdown();
           }
         } else if (this.isSelectOneElement) {
           // Open single select dropdown if it's not active

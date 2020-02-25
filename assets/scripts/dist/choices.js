@@ -1909,6 +1909,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                activeItems[0].keyCode = tabKey;
 	              }
 	              _this16._handleChoiceAction(activeItems, highlighted);
+	              _this16.hideDropdown();
 	            }
 	          } else if (_this16.isSelectOneElement) {
 	            // Open single select dropdown if it's not active
