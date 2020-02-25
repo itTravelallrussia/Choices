@@ -1761,7 +1761,7 @@ class Choices {
         this._handleButtonAction(activeItems, target);
       }
 
-      if (hasActiveDropdown && hasActiveDropdown.innerText !==  this.idNames.itemChoice) {
+      if (hasActiveDropdown) {
         const highlighted = this.dropdown.querySelector(`.${this.config.classNames.highlightedState}`);
 
         // If we have a highlighted choice
@@ -1771,9 +1771,9 @@ class Choices {
             activeItems[0].keyCode = tabKey;
           }
           this._handleChoiceAction(activeItems, highlighted);
+          this.hideDropdown();
         }
       } else if (this.isSelectOneElement) {
-        this.hideDropdown();
         // Open single select dropdown if it's not active
         if (!hasActiveDropdown) {
           this.showDropdown(true);

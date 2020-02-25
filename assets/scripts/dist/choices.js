@@ -1898,7 +1898,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          _this16._handleButtonAction(activeItems, target);
 	        }
 
-	        if (hasActiveDropdown && hasActiveDropdown.innerText !== _this16.idNames.itemChoice) {
+	        if (hasActiveDropdown) {
 	          var highlighted = _this16.dropdown.querySelector('.' + _this16.config.classNames.highlightedState);
 
 	          // If we have a highlighted choice
@@ -1908,9 +1908,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	              activeItems[0].keyCode = tabKey;
 	            }
 	            _this16._handleChoiceAction(activeItems, highlighted);
+	            _this16.hideDropdown();
 	          }
 	        } else if (_this16.isSelectOneElement) {
-	          _this16.hideDropdown();
 	          // Open single select dropdown if it's not active
 	          if (!hasActiveDropdown) {
 	            _this16.showDropdown(true);
