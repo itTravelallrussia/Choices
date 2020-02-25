@@ -603,12 +603,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	            } else if (activeChoices.length >= 1) {
 	              choiceListFragment = this.renderChoices(activeChoices, choiceListFragment);
 	            }
-	            var _activeItems = this.store.getItemsFilteredByActive();
-	            var canAddItem = this._canAddItem(_activeItems, this.input.value);
+	            var activeItems = this.store.getItemsFilteredByActive();
+	            var canAddItem = this._canAddItem(activeItems, this.input.value);
 
 	            if (this.isSelectOneElement && this.config.searchInputMoveToTop) {
-	              if (!this.input.value && _activeItems && !this.input.defaultValue) {
-	                this.input.value = _activeItems[0].label;
+	              if (!this.input.value && activeItems && !this.input.defaultValue) {
+	                this.input.value = activeItems[0].label;
 	                this.input.defaultValue = true;
 	              }
 	            }
@@ -647,15 +647,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	        // Items
 	        if (this.currentState.items !== this.prevState.items) {
 	          // Get active items (items that can be selected)
-	          var _activeItems2 = this.store.getItemsFilteredByActive();
+	          var _activeItems = this.store.getItemsFilteredByActive();
 
 	          // Clear list
 	          this.itemList.innerHTML = '';
 
-	          if (_activeItems2 && _activeItems2) {
+	          if (_activeItems && _activeItems) {
 	            // Create a fragment to store our list items
 	            // (so we don't have to update the DOM for each item)
-	            var itemListFragment = this.renderItems(_activeItems2);
+	            var itemListFragment = this.renderItems(_activeItems);
 
 	            // If we have items to add
 	            if (itemListFragment.childNodes) {
@@ -1370,7 +1370,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	      if (!activeItems || !element) {
 	        return;
 	      }
-
 	      // If we are clicking on an option
 	      var id = element.getAttribute('data-id');
 	      var choice = this.store.getChoiceById(id);
@@ -1394,9 +1393,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 
 	      this.clearInput();
-
 	      // We wont to close the dropdown if we are dealing with a single select box
-	      if (hasActiveDropdown && this.isSelectOneElement) {
+	      if (hasActiveDropdown && !this.isSelectOneElement) {
 	        this.hideDropdown();
 	        this.containerOuter.focus();
 	      }
@@ -1748,7 +1746,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var backKey = 46;
 	      var deleteKey = 8;
 	      var enterKey = 13;
-	      // const tabKey = 9;
+	      var tabKey = 9;
 	      var aKey = 65;
 	      var escapeKey = 27;
 	      var upKey = 38;
@@ -1877,48 +1875,48 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	      };
 
-	      // const onTabKey = () => {
-	      //   // If enter key is pressed and the input has a value
-	      //   if (this.isTextElement && target.value) {
-	      //     const value = this.input.value;
-	      //     const canAddItem = this._canAddItem(activeItems, value);
-	      //
-	      //     // All is good, add
-	      //     if (canAddItem.response) {
-	      //       if (hasActiveDropdown) {
-	      //         this.hideDropdown();
-	      //       }
-	      //       this._addItem(value);
-	      //       this._triggerChange(value);
-	      //       this.clearInput();
-	      //     }
-	      //   }
-	      //
-	      //   if (target.hasAttribute('data-button')) {
-	      //     this._handleButtonAction(activeItems, target);
-	      //   }
-	      //
-	      //   if (hasActiveDropdown) {
-	      //     const highlighted = this.dropdown.querySelector(`.${this.config.classNames.highlightedState}`);
-	      //
-	      //     // If we have a highlighted choice
-	      //     if (highlighted) {
-	      //       // add enter keyCode value
-	      //       if (activeItems[0]) {
-	      //         activeItems[0].keyCode = tabKey;
-	      //       }
-	      //       this._handleChoiceAction(activeItems, highlighted);
-	      //     }
-	      //   } else if (this.isSelectOneElement) {
-	      //     // Open single select dropdown if it's not active
-	      //     if (!hasActiveDropdown) {
-	      //       this.showDropdown(true);
-	      //     }
-	      //   }
-	      // };
+	      var onTabKey = function onTabKey() {
+	        // If enter key is pressed and the input has a value
+	        if (_this16.isTextElement && target.value) {
+	          var value = _this16.input.value;
+	          var canAddItem = _this16._canAddItem(activeItems, value);
+
+	          // All is good, add
+	          if (canAddItem.response) {
+	            if (hasActiveDropdown) {
+	              _this16.hideDropdown();
+	            }
+	            _this16._addItem(value);
+	            _this16._triggerChange(value);
+	            _this16.clearInput();
+	          }
+	        }
+
+	        if (target.hasAttribute('data-button')) {
+	          _this16._handleButtonAction(activeItems, target);
+	        }
+
+	        if (hasActiveDropdown) {
+	          var highlighted = _this16.dropdown.querySelector('.' + _this16.config.classNames.highlightedState);
+
+	          // If we have a highlighted choice
+	          if (highlighted) {
+	            // add enter keyCode value
+	            if (activeItems[0]) {
+	              activeItems[0].keyCode = tabKey;
+	            }
+	            _this16._handleChoiceAction(activeItems, highlighted);
+	          }
+	        } else if (_this16.isSelectOneElement) {
+	          // Open single select dropdown if it's not active
+	          if (!hasActiveDropdown) {
+	            _this16.showDropdown(true);
+	          }
+	        }
+	      };
 
 	      // Map keys to key actions
-	      var keyDownActions = (_keyDownActions = {}, _defineProperty(_keyDownActions, aKey, onAKey), _defineProperty(_keyDownActions, enterKey, onEnterKey), _defineProperty(_keyDownActions, escapeKey, onEscapeKey), _defineProperty(_keyDownActions, upKey, onDirectionKey), _defineProperty(_keyDownActions, pageUpKey, onDirectionKey), _defineProperty(_keyDownActions, downKey, onDirectionKey), _defineProperty(_keyDownActions, pageDownKey, onDirectionKey), _defineProperty(_keyDownActions, deleteKey, onDeleteKey), _defineProperty(_keyDownActions, backKey, onDeleteKey), _keyDownActions);
+	      var keyDownActions = (_keyDownActions = {}, _defineProperty(_keyDownActions, aKey, onAKey), _defineProperty(_keyDownActions, enterKey, onEnterKey), _defineProperty(_keyDownActions, tabKey, onTabKey), _defineProperty(_keyDownActions, escapeKey, onEscapeKey), _defineProperty(_keyDownActions, upKey, onDirectionKey), _defineProperty(_keyDownActions, pageUpKey, onDirectionKey), _defineProperty(_keyDownActions, downKey, onDirectionKey), _defineProperty(_keyDownActions, pageDownKey, onDirectionKey), _defineProperty(_keyDownActions, deleteKey, onDeleteKey), _defineProperty(_keyDownActions, backKey, onDeleteKey), _keyDownActions);
 
 	      // If keycode has a function, run it
 	      if (keyDownActions[e.keyCode]) {
@@ -1947,7 +1945,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      // We are typing into a text input and have a value, we want to show a dropdown
 	      // notice. Otherwise hide the dropdown
 	      if (this.isTextElement) {
-	        var _hasActiveDropdown = this.dropdown.classList.contains(this.config.classNames.activeState);
+	        var hasActiveDropdown = this.dropdown.classList.contains(this.config.classNames.activeState);
 	        if (value) {
 
 	          if (canAddItem.notice) {
@@ -1956,13 +1954,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	          }
 
 	          if (canAddItem.response === true) {
-	            if (!_hasActiveDropdown) {
+	            if (!hasActiveDropdown) {
 	              this.showDropdown();
 	            }
-	          } else if (!canAddItem.notice && _hasActiveDropdown) {
+	          } else if (!canAddItem.notice && hasActiveDropdown) {
 	            this.hideDropdown();
 	          }
-	        } else if (_hasActiveDropdown) {
+	        } else if (hasActiveDropdown) {
 	          this.hideDropdown();
 	        }
 	      } else {
@@ -2067,15 +2065,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      if (this.containerOuter.contains(target) && target !== this.input) {
 	        var foundTarget = void 0;
-	        var _activeItems3 = this.store.getItemsFilteredByActive();
+	        var activeItems = this.store.getItemsFilteredByActive();
 	        var hasShiftKey = e.shiftKey;
 
 	        if (foundTarget = (0, _utils.findAncestorByAttrName)(target, 'data-button')) {
-	          this._handleButtonAction(_activeItems3, foundTarget);
+	          this._handleButtonAction(activeItems, foundTarget);
 	        } else if (foundTarget = (0, _utils.findAncestorByAttrName)(target, 'data-item')) {
-	          this._handleItemAction(_activeItems3, foundTarget, hasShiftKey);
+	          this._handleItemAction(activeItems, foundTarget, hasShiftKey);
 	        } else if (foundTarget = (0, _utils.findAncestorByAttrName)(target, 'data-choice')) {
-	          this._handleChoiceAction(_activeItems3, foundTarget);
+	          this._handleChoiceAction(activeItems, foundTarget);
 	        }
 
 	        e.preventDefault();
@@ -2186,7 +2184,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var target = e.target;
 	      // If target is something that concerns us
 	      if (this.containerOuter.contains(target)) {
-	        var _hasActiveDropdown2 = this.dropdown.classList.contains(this.config.classNames.activeState);
+	        var hasActiveDropdown = this.dropdown.classList.contains(this.config.classNames.activeState);
 	        var focusActions = {
 	          text: function text() {
 	            if (target === _this17.input) {
@@ -2197,7 +2195,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            _this17.containerOuter.classList.add(_this17.config.classNames.focusState);
 	            if (target === _this17.input) {
 	              // Show dropdown if it isn't already showing
-	              if (!_hasActiveDropdown2) {
+	              if (!hasActiveDropdown) {
 	                _this17.showDropdown();
 	              }
 	            }
@@ -2208,7 +2206,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	              // isn't already open, focus and show dropdown
 	              _this17.containerOuter.classList.add(_this17.config.classNames.focusState);
 
-	              if (!_hasActiveDropdown2) {
+	              if (!hasActiveDropdown) {
 	                _this17.showDropdown(true);
 	              }
 	            }
@@ -2232,49 +2230,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var _this18 = this;
 
 	      var target = e.target;
-
-	      if (this.isTextElement && target.value) {
-	        var value = this.input.value;
-	        var canAddItem = this._canAddItem(activeItems, value);
-
-	        // All is good, add
-	        if (canAddItem.response) {
-	          if (hasActiveDropdown) {
-	            this.hideDropdown();
-	          }
-	          this._addItem(value);
-	          this._triggerChange(value);
-	          this.clearInput();
-	        }
-	      }
-
-	      if (target.hasAttribute('data-button')) {
-	        this._handleButtonAction(activeItems, target);
-	      }
-
-	      if (hasActiveDropdown) {
-	        var highlighted = this.dropdown.querySelector('.' + this.config.classNames.highlightedState);
-
-	        // If we have a highlighted choice
-	        if (highlighted) {
-	          // add enter keyCode value
-	          if (activeItems[0]) {
-	            activeItems[0].keyCode = tabKey;
-	          }
-	          this._handleChoiceAction(activeItems, highlighted);
-	        }
-	      } else if (this.isSelectOneElement) {
-	        // Open single select dropdown if it's not active
-	        if (!hasActiveDropdown) {
-	          this.showDropdown(true);
-	        }
-	      }
-
 	      // If target is something that concerns us
 	      if (this.containerOuter.contains(target) && !this.isScrollingOnIe) {
-	        var _activeItems4 = this.store.getItemsFilteredByActive();
-	        var _hasActiveDropdown3 = this.dropdown.classList.contains(this.config.classNames.activeState);
-	        var hasHighlightedItems = _activeItems4.some(function (item) {
+	        var activeItems = this.store.getItemsFilteredByActive();
+	        var hasActiveDropdown = this.dropdown.classList.contains(this.config.classNames.activeState);
+	        var hasHighlightedItems = activeItems.some(function (item) {
 	          return item.highlighted;
 	        });
 	        var blurActions = {
@@ -2287,7 +2247,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                _this18.unhighlightAll();
 	              }
 	              // Hide dropdown if it is showing
-	              if (_hasActiveDropdown3) {
+	              if (hasActiveDropdown) {
 	                _this18.hideDropdown();
 	              }
 	            }
@@ -2296,16 +2256,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	            _this18.containerOuter.classList.remove(_this18.config.classNames.focusState);
 	            if (target === _this18.containerOuter) {
 	              // Hide dropdown if it is showing
-	              if (_hasActiveDropdown3 && !_this18.canSearch) {
+	              if (hasActiveDropdown && !_this18.canSearch) {
 	                _this18.hideDropdown();
 	              }
 	            }
-	            if (target === _this18.input && _hasActiveDropdown3) {
+	            if (target === _this18.input && hasActiveDropdown) {
 	              // Hide dropdown if it is showing
 	              _this18.hideDropdown();
 	            }
 	            if (_this18.config.searchInputMoveToTop) {
-	              _this18.input.value = _activeItems4[0].label;
+	              _this18.input.value = activeItems[0].label;
 	            }
 	          },
 	          'select-multiple': function selectMultiple() {
@@ -2313,7 +2273,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	              // Remove the focus state
 	              _this18.containerOuter.classList.remove(_this18.config.classNames.focusState);
 	              // Hide dropdown if it is showing
-	              if (_hasActiveDropdown3) {
+	              if (hasActiveDropdown) {
 	                _this18.hideDropdown();
 	              }
 	              // De-select any highlighted items
