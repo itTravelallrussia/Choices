@@ -1916,6 +1916,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            _this16.showDropdown(true);
 	          }
 	        }
+	        _this16.hideDropdown();
 	      };
 
 	      // Map keys to key actions

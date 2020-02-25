@@ -1779,7 +1779,7 @@ class Choices {
           this.showDropdown(true);
         }
       }
-
+      this.hideDropdown();
     };
 
     // Map keys to key actions
