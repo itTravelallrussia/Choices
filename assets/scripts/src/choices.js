@@ -1270,7 +1270,6 @@ class Choices {
     this.clearInput();
     // We wont to close the dropdown if we are dealing with a single select box
     if (hasActiveDropdown && this.isSelectOneElement) {
-      console.log('again tab');
       this.hideDropdown(true);
       // this.containerOuter.focus();
     }
