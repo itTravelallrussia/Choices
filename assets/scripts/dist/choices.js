@@ -1395,6 +1395,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      this.clearInput();
 	      // We wont to close the dropdown if we are dealing with a single select box
 	      if (hasActiveDropdown) {
+	        console.log('hasActiveDropdown', hasActiveDropdown);
 	        this.hideDropdown();
 	        this.containerOuter.focus();
 	      }
@@ -1898,6 +1899,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 
 	        if (hasActiveDropdown) {
+	          console.log('hasActiveDropdown', hasActiveDropdown);
 	          var highlighted = _this16.dropdown.querySelector('.' + _this16.config.classNames.highlightedState);
 
 	          // If we have a highlighted choice
@@ -1906,6 +1908,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            if (activeItems[0]) {
 	              activeItems[0].keyCode = tabKey;
 	            }
+	            console.log('_handleChoiceAction', activeItems, highlighted);
 	            _this16._handleChoiceAction(activeItems, highlighted);
 	          }
 	          // } else if (this.isSelectOneElement) {

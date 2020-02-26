@@ -1270,6 +1270,7 @@ class Choices {
     this.clearInput();
     // We wont to close the dropdown if we are dealing with a single select box
     if (hasActiveDropdown) {
+      console.log('hasActiveDropdown', hasActiveDropdown);
       this.hideDropdown();
       this.containerOuter.focus();
     }
@@ -1761,6 +1762,7 @@ class Choices {
       }
 
       if (hasActiveDropdown) {
+        console.log('hasActiveDropdown', hasActiveDropdown);
         const highlighted = this.dropdown.querySelector(`.${this.config.classNames.highlightedState}`);
 
         // If we have a highlighted choice
@@ -1769,6 +1771,7 @@ class Choices {
           if (activeItems[0]) {
             activeItems[0].keyCode = tabKey;
           }
+          console.log('_handleChoiceAction', activeItems, highlighted);
           this._handleChoiceAction(activeItems, highlighted);
         }
       // } else if (this.isSelectOneElement) {
