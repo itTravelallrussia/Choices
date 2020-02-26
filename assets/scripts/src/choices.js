@@ -1154,7 +1154,6 @@ class Choices {
     if (!activeItems || !element) {
       return;
     }
-
     // If we are clicking on a button
     if (this.config.removeItems && this.config.removeItemButton) {
       const itemId = element.parentNode.getAttribute('data-id');
@@ -1237,6 +1236,7 @@ class Choices {
     if (!activeItems || !element) {
       return;
     }
+    debugger
     // If we are clicking on an option
     const id = element.getAttribute('data-id');
     const choice = this.store.getChoiceById(id);
@@ -1267,7 +1267,7 @@ class Choices {
       }
     }
 
-    this.clearInput();
+    // this.clearInput();
     // We wont to close the dropdown if we are dealing with a single select box
     if (hasActiveDropdown && this.isSelectOneElement) {
       this.hideDropdown();
@@ -1739,6 +1739,7 @@ class Choices {
     };
 
     const onTabKey = () => {
+      debugger
       // If enter key is pressed and the input has a value
       if (this.isTextElement && target.value) {
         const value = this.input.value;
@@ -1770,11 +1771,11 @@ class Choices {
           }
           this._handleChoiceAction(activeItems, highlighted);
         }
-      } else if (this.isSelectOneElement) {
-        // Open single select dropdown if it's not active
-        if (!hasActiveDropdown) {
-          this.showDropdown(true);
-        }
+      // } else if (this.isSelectOneElement) {
+      //   // Open single select dropdown if it's not active
+      //   if (!hasActiveDropdown) {
+      //     this.showDropdown(true);
+      //   }
       }
     };
 

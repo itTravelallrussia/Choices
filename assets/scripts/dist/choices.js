@@ -1279,7 +1279,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	      if (!activeItems || !element) {
 	        return;
 	      }
-
 	      // If we are clicking on a button
 	      if (this.config.removeItems && this.config.removeItemButton) {
 	        var itemId = element.parentNode.getAttribute('data-id');
@@ -1370,6 +1369,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      if (!activeItems || !element) {
 	        return;
 	      }
+	      debugger;
 	      // If we are clicking on an option
 	      var id = element.getAttribute('data-id');
 	      var choice = this.store.getChoiceById(id);
@@ -1392,7 +1392,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	      }
 
-	      this.clearInput();
+	      // this.clearInput();
 	      // We wont to close the dropdown if we are dealing with a single select box
 	      if (hasActiveDropdown && this.isSelectOneElement) {
 	        this.hideDropdown();
@@ -1876,6 +1876,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      };
 
 	      var onTabKey = function onTabKey() {
+	        debugger;
 	        // If enter key is pressed and the input has a value
 	        if (_this16.isTextElement && target.value) {
 	          var value = _this16.input.value;
@@ -1907,11 +1908,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	            _this16._handleChoiceAction(activeItems, highlighted);
 	          }
-	        } else if (_this16.isSelectOneElement) {
-	          // Open single select dropdown if it's not active
-	          if (!hasActiveDropdown) {
-	            _this16.showDropdown(true);
-	          }
+	          // } else if (this.isSelectOneElement) {
+	          //   // Open single select dropdown if it's not active
+	          //   if (!hasActiveDropdown) {
+	          //     this.showDropdown(true);
+	          //   }
 	        }
 	      };
 
