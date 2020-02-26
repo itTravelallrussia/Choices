@@ -925,6 +925,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: function hideDropdown() {
 	      var blurInput = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
 
+	      debugger;
 	      // A dropdown flips if it does not have space within the page
 	      var isFlipped = this.containerOuter.classList.contains(this.config.classNames.flippedState);
 
@@ -938,6 +939,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 
 	      // Optionally blur the input if we have a search input
+	      debugger;
 	      if (blurInput && this.canSearch && document.activeElement === this.input) {
 	        this.input.blur();
 	      }
@@ -1369,7 +1371,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	      if (!activeItems || !element) {
 	        return;
 	      }
-	      debugger;
 	      // If we are clicking on an option
 	      var id = element.getAttribute('data-id');
 	      var choice = this.store.getChoiceById(id);
@@ -1396,8 +1397,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      // We wont to close the dropdown if we are dealing with a single select box
 	      if (hasActiveDropdown) {
 	        console.log('hasActiveDropdown', hasActiveDropdown);
-	        this.hideDropdown();
+	        this.hideDropdown(true);
+	        console.log('hideDropdown  ===  active');
 	        this.containerOuter.focus();
+	        console.log('containerOuter  ===  active');
 	      }
 	    }
 

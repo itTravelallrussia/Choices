@@ -803,6 +803,7 @@ class Choices {
    * @public
    */
   hideDropdown(blurInput = false) {
+    debugger
     // A dropdown flips if it does not have space within the page
     const isFlipped = this.containerOuter.classList.contains(this.config.classNames.flippedState);
 
@@ -816,6 +817,7 @@ class Choices {
     }
 
     // Optionally blur the input if we have a search input
+    debugger
     if (blurInput && this.canSearch && document.activeElement === this.input) {
       this.input.blur();
     }
@@ -1236,7 +1238,6 @@ class Choices {
     if (!activeItems || !element) {
       return;
     }
-    debugger
     // If we are clicking on an option
     const id = element.getAttribute('data-id');
     const choice = this.store.getChoiceById(id);
@@ -1271,8 +1272,10 @@ class Choices {
     // We wont to close the dropdown if we are dealing with a single select box
     if (hasActiveDropdown) {
       console.log('hasActiveDropdown', hasActiveDropdown);
-      this.hideDropdown();
+      this.hideDropdown(true);
+      console.log('hideDropdown  ===  active');
       this.containerOuter.focus();
+      console.log('containerOuter  ===  active');
     }
   }
 
