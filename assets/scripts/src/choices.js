@@ -1272,7 +1272,7 @@ class Choices {
     if (hasActiveDropdown && this.isSelectOneElement) {
       console.log('again tab');
       this.hideDropdown(true);
-      this.containerOuter.focus();
+      // this.containerOuter.focus();
     }
   }
 
