@@ -925,7 +925,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: function hideDropdown() {
 	      var blurInput = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
 
-	      debugger;
 	      // A dropdown flips if it does not have space within the page
 	      var isFlipped = this.containerOuter.classList.contains(this.config.classNames.flippedState);
 
@@ -939,7 +938,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 
 	      // Optionally blur the input if we have a search input
-	      debugger;
 	      if (blurInput && this.canSearch && document.activeElement === this.input) {
 	        this.input.blur();
 	      }
@@ -1281,6 +1279,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      if (!activeItems || !element) {
 	        return;
 	      }
+
 	      // If we are clicking on a button
 	      if (this.config.removeItems && this.config.removeItemButton) {
 	        var itemId = element.parentNode.getAttribute('data-id');
@@ -1395,12 +1394,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      this.clearInput();
 	      // We wont to close the dropdown if we are dealing with a single select box
-	      if (hasActiveDropdown) {
-	        console.log('hasActiveDropdown', hasActiveDropdown);
+	      if (hasActiveDropdown && this.isSelectOneElement) {
+	        console.log('again tab');
 	        this.hideDropdown(true);
-	        console.log('hideDropdown  ===  active');
 	        this.containerOuter.focus();
-	        console.log('containerOuter  ===  active');
 	      }
 	    }
 
@@ -1880,7 +1877,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	      };
 
 	      var onTabKey = function onTabKey() {
-	        debugger;
 	        // If enter key is pressed and the input has a value
 	        if (_this16.isTextElement && target.value) {
 	          var value = _this16.input.value;
@@ -1902,7 +1898,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 
 	        if (hasActiveDropdown) {
-	          console.log('hasActiveDropdown', hasActiveDropdown);
 	          var highlighted = _this16.dropdown.querySelector('.' + _this16.config.classNames.highlightedState);
 
 	          // If we have a highlighted choice
@@ -1911,14 +1906,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	            if (activeItems[0]) {
 	              activeItems[0].keyCode = tabKey;
 	            }
-	            console.log('_handleChoiceAction', activeItems, highlighted);
 	            _this16._handleChoiceAction(activeItems, highlighted);
 	          }
-	          // } else if (this.isSelectOneElement) {
-	          //   // Open single select dropdown if it's not active
-	          //   if (!hasActiveDropdown) {
-	          //     this.showDropdown(true);
-	          //   }
+	        } else if (_this16.isSelectOneElement) {
+	          // Open single select dropdown if it's not active
+	          if (!hasActiveDropdown) {
+	            _this16.showDropdown(true);
+	          }
 	        }
 	      };
 

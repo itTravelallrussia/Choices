@@ -803,7 +803,6 @@ class Choices {
    * @public
    */
   hideDropdown(blurInput = false) {
-    debugger
     // A dropdown flips if it does not have space within the page
     const isFlipped = this.containerOuter.classList.contains(this.config.classNames.flippedState);
 
@@ -817,7 +816,6 @@ class Choices {
     }
 
     // Optionally blur the input if we have a search input
-    debugger
     if (blurInput && this.canSearch && document.activeElement === this.input) {
       this.input.blur();
     }
@@ -1156,6 +1154,7 @@ class Choices {
     if (!activeItems || !element) {
       return;
     }
+
     // If we are clicking on a button
     if (this.config.removeItems && this.config.removeItemButton) {
       const itemId = element.parentNode.getAttribute('data-id');
@@ -1270,12 +1269,10 @@ class Choices {
 
     this.clearInput();
     // We wont to close the dropdown if we are dealing with a single select box
-    if (hasActiveDropdown) {
-      console.log('hasActiveDropdown', hasActiveDropdown);
+    if (hasActiveDropdown && this.isSelectOneElement) {
+      console.log('again tab');
       this.hideDropdown(true);
-      console.log('hideDropdown  ===  active');
       this.containerOuter.focus();
-      console.log('containerOuter  ===  active');
     }
   }
 
@@ -1743,7 +1740,6 @@ class Choices {
     };
 
     const onTabKey = () => {
-      debugger
       // If enter key is pressed and the input has a value
       if (this.isTextElement && target.value) {
         const value = this.input.value;
@@ -1765,7 +1761,6 @@ class Choices {
       }
 
       if (hasActiveDropdown) {
-        console.log('hasActiveDropdown', hasActiveDropdown);
         const highlighted = this.dropdown.querySelector(`.${this.config.classNames.highlightedState}`);
 
         // If we have a highlighted choice
@@ -1774,14 +1769,13 @@ class Choices {
           if (activeItems[0]) {
             activeItems[0].keyCode = tabKey;
           }
-          console.log('_handleChoiceAction', activeItems, highlighted);
           this._handleChoiceAction(activeItems, highlighted);
         }
-      // } else if (this.isSelectOneElement) {
-      //   // Open single select dropdown if it's not active
-      //   if (!hasActiveDropdown) {
-      //     this.showDropdown(true);
-      //   }
+      } else if (this.isSelectOneElement) {
+        // Open single select dropdown if it's not active
+        if (!hasActiveDropdown) {
+          this.showDropdown(true);
+        }
       }
     };
 
