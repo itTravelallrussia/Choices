@@ -1272,7 +1272,6 @@ class Choices {
     // We wont to close the dropdown if we are dealing with a single select box
     if (hasActiveDropdown && this.isSelectOneElement) {
       this.hideDropdown(!isSafari);
-      isSafari && this.containerOuter.focus();
     }
   }
 
