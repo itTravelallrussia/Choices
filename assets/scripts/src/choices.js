@@ -1268,10 +1268,10 @@ class Choices {
     }
 
     this.clearInput();
+    const isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || safari.pushNotification);
     // We wont to close the dropdown if we are dealing with a single select box
     if (hasActiveDropdown && this.isSelectOneElement) {
-      this.hideDropdown(true);
-      // this.containerOuter.focus();
+      this.hideDropdown(!isSafari);
     }
   }
 
